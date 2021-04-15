@@ -17,8 +17,8 @@ source <your-env>/bin/activate
 
 `python main.py translate {filename} {languages}` where:
 
-`{filename}` is a fully qualified path to json or properties file to be translated
-`{languages}` is a space separate list of language codes 
+`{filename}` is a fully qualified path to json or properties file to be translated  
+`{languages}` is a space separate list of language codes  
 
 
 # How It Works
@@ -28,10 +28,10 @@ source <your-env>/bin/activate
 
 ## Example:
 
-**Input:**
-`python main.py translate messages.properties es ar`
+**Input:**  
+`python main.py translate messages.properties es ar` 
 
-**Output:**
-messages.properties (original file)
-messages-es.properties (Spanish version)
-messages-ar.properties (Arabic version)
+**Output:**  
+messages.properties (original file)  
+messages-es.properties (Spanish version)  
+messages-ar.properties (Arabic version)  

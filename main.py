@@ -39,7 +39,7 @@ def convertStr(data, ignore_dicts=False):
         }
     return data
 
-def propsTranslator(inputfile, languages):
+def propsTranslator(separator, inputfile, languages):
     global CURR_LANGUAGE
     for curr in languages:
         CURR_LANGUAGE = curr
@@ -56,10 +56,10 @@ def propsTranslator(inputfile, languages):
 
             base = os.path.basename(inputfile)
             filename = os.path.splitext(base)[0]
-            with open(filename+'-'+CURR_LANGUAGE+'.properties', 'wb') as newF:
+            with open(filename+separator+CURR_LANGUAGE+'.properties', 'wb') as newF:
                 newProps.store(newF, encoding='utf-8')
 
-def jsonTranslator(inputfile, languages):
+def jsonTranslator(separator, inputfile, languages):
     global CURR_LANGUAGE
     for curr in languages:
         CURR_LANGUAGE = curr
@@ -69,7 +69,7 @@ def jsonTranslator(inputfile, languages):
 
         base = os.path.basename(inputfile)
         filename = os.path.splitext(base)[0]
-        with open(filename+'-'+CURR_LANGUAGE+'.json', 'w') as w:
+        with open(filename+separator+CURR_LANGUAGE+'.json', 'w') as w:
             print("Writing out translated file")
             json.dump(data, w, ensure_ascii=False, indent=2)
 
@@ -95,9 +95,10 @@ def main():
     pass
 
 @main.command(["translate"])
+@click.option("--separator", type=click.Choice(['_', '-'], case_sensitive=False), default="_", show_default=True)
 @click.argument("filename", type=click.Path(exists=True))
 @click.argument("languages", nargs=-1)
-def translate(filename, languages):
+def translate(separator, filename, languages):
 
     global GOOGLE_PARENT_PROJECT
     creds = os.getenv('GOOGLE_APPLICATION_CREDENTIALS')
@@ -111,9 +112,9 @@ def translate(filename, languages):
 
     if languages:
         if filename.endswith('json'):
-            jsonTranslator(filename, languages)
+            jsonTranslator(separator, filename, languages)
         elif filename.endswith('properties'):
-            propsTranslator(filename, languages)
+            propsTranslator(separator, filename, languages)
     else:
         print("Empty list of languages")
 

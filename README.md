@@ -1,3 +1,8 @@
+# Supported File Types  
+
+JSON  
+Properties  
+
 # Setup
 
 ```sh

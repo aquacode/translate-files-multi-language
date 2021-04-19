@@ -5,12 +5,22 @@ pip install virtualenv
 virtualenv <your-env>
 source <your-env>/bin/activate
 <your-env>/bin/pip install -r requirements.txt
+```  
+
+--or--
+
+```sh
+python -m venv <your-env>
+source <your-env>/bin/activate
+pip install -r requirements.txt
 ```
 
-# Required Environment Variables
+# Required Environment Variables  
 
-`GOOGLE_APPLICATION_CREDENTIALS`: set to fully qualified path to Google API JSON credentials file
-`GOOGLE_PARENT_PROJECT`: set to your Google project that has Google Translate API enabled
+Read this documentation: [Google Translate API](https://cloud.google.com/translate/docs/setup)  
+
+`GOOGLE_APPLICATION_CREDENTIALS`: set to fully qualified path to Google API JSON credentials file  
+`GOOGLE_PARENT_PROJECT`: set to your Google project that has Google Translate API enabled  
 
 
 # How To Use
@@ -18,7 +28,7 @@ source <your-env>/bin/activate
 `python main.py translate {filename} {languages}` where:
 
 `{filename}` is a fully qualified path to json or properties file to be translated  
-`{languages}` is a space separate list of language codes  
+`{languages}` is a space separate list of language codes from this list of [language codes](https://cloud.google.com/translate/docs/languages)
 
 
 # How It Works
